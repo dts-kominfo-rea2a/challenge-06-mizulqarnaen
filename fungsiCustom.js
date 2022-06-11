@@ -37,7 +37,7 @@ const bacaData = (fnCallback) => {
             case file3:
               message.push(data[0].data.message.split(" ")[1]); break;
           }
-          console.log(message);
+          fnCallback(err, message);
         }
       }
     );
