@@ -43,7 +43,7 @@ const bacaData = (fnCallback) => {
                 data = JSON.parse(data);
                 message.push(data[0].data.message.split(" ")[1]);
 
-                fnCallback(err, message);
+                fnCallback(null, message);
               }
             });
           }
