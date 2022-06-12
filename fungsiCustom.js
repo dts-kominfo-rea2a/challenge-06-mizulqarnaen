@@ -20,30 +20,49 @@ let modifyFile3 = (val) => {
 // TODO: Kerjakan bacaData
 // gunakan variabel file1, file2, dan file3
 const bacaData = (fnCallback) => {
-  const files = [file1, file2, file3];
   const message = [];
 
-  files.forEach((file, index) => {
-    fs.readFile(file, 'utf8', (err, data) => {
-        if(err) {
-          fnCallback(err, null);
-        } else {
-          data = JSON.parse(data);
-          switch (file) {
-            case file1:
-              message.push(data.message.split(" ")[1]); break;
-            case file2:
-              message.push(data[0].message.split(" ")[1]); break;
-            case file3:
-              message.push(data[0].data.message.split(" ")[1]); break;
+  fs.readFile(file1, 'utf8', (err, data) => {
+      if(err) {
+        fnCallback(err, null);
+      } else {
+        data = JSON.parse(data);
+        message.push(data.message.split(" ")[1]);
+
+        fs.readFile(file2, 'utf8', (err, data) => {
+          if(err) {
+            fnCallback(err, null);
+          } else {
+            data = JSON.parse(data);
+            message.push(data[0].message.split(" ")[1]);
+
+            fs.readFile(file3, 'utf8', (err, data) => {
+              if(err) {
+                fnCallback(err, null);
+              } else {
+                data = JSON.parse(data);
+                message.push(data[0].data.message.split(" ")[1]);
+
+                fnCallback(err, message);
+              }
+            });
           }
-          if(index == (files.length - 1)){
-            fnCallback(err, message);
-          }
-        }
+        });
+
+        // switch (file) {
+        //   case file1:
+        //     message.push(data.message.split(" ")[1]); break;
+        //   case file2:
+        //     message.push(data[0].message.split(" ")[1]); break;
+        //   case file3:
+        //     message.push(data[0].data.message.split(" ")[1]); break;
+        // }
+        // if(index == (files.length - 1)){
+        //   fnCallback(err, message);
+        // }
       }
-    );
-  });
+    }
+  );
 }
 
 // ! JANGAN DIMODIFIKASI
