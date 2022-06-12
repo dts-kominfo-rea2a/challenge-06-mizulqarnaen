@@ -37,7 +37,9 @@ const bacaData = (fnCallback) => {
             case file3:
               message.push(data[0].data.message.split(" ")[1]); break;
           }
-          fnCallback(err, message);
+          if(index == (files.length - 1)){
+            fnCallback(err, message);
+          }
         }
       }
     );
