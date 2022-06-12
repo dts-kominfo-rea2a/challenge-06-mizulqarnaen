@@ -48,18 +48,6 @@ const bacaData = (fnCallback) => {
             });
           }
         });
-
-        // switch (file) {
-        //   case file1:
-        //     message.push(data.message.split(" ")[1]); break;
-        //   case file2:
-        //     message.push(data[0].message.split(" ")[1]); break;
-        //   case file3:
-        //     message.push(data[0].data.message.split(" ")[1]); break;
-        // }
-        // if(index == (files.length - 1)){
-        //   fnCallback(err, message);
-        // }
       }
     }
   );
